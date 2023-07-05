@@ -24,9 +24,21 @@ final class Connection
         return self::$name;
 
     }
+
+    public function __clone(): void
+    {
+        // TODO: Implement __clone() method.
+    }
+
+    public function __wakeup(): void
+    {
+        // TODO: Implement __wakeup() method.
+    }
 }
 
 $connection = Connection::getInstance();
 $connection::setName('connection1');
 
-var_dump($connection::getName());
+$connection2 = Connection::getInstance();
+
+var_dump($connection2::getName());
