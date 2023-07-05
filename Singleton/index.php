@@ -13,4 +13,20 @@ final class Connection
 
         return self::$instance;
     }
+
+    public static function setName(string $name): void
+    {
+        self::$name = $name;
+    }
+
+    public static function getName(): string
+    {
+        return self::$name;
+
+    }
 }
+
+$connection = Connection::getInstance();
+$connection::setName('connection1');
+
+var_dump($connection::getName());
