@@ -5,6 +5,10 @@ final class Connection
     private static ?self $instance = null;
     private static string $name;
 
+    private function __construct()
+    {
+    }
+
     public static function getInstance(): self
     {
         if (self::$instance === null) {
