@@ -29,14 +29,17 @@ final class Connection
 
     }
 
-    public function __clone(): void
+    protected function __clone(): void
     {
         // TODO: Implement __clone() method.
     }
 
+    /**
+     * @throws Exception
+     */
     public function __wakeup(): void
     {
-        // TODO: Implement __wakeup() method.
+        throw new \Exception("Cannot unserialize a singleton.");
     }
 }
 
