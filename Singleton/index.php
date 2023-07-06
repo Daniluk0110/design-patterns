@@ -5,6 +5,10 @@ final class Connection
     private static ?self $instance = null;
     private static string $name;
 
+    /**
+     * Конструктор можно сделать скрытым или защищённым для предотвращения его прямого вызова.
+     * В таком случае объект класса можно будет создать только с помощью статических методов.
+     */
     private function __construct()
     {
     }
