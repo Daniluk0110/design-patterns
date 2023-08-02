@@ -7,6 +7,7 @@
 ## Пример использования в PHP
 
 * Создайте класс Service, который будет зависеть от другого класса (например, Dependency):
+* 
 ```php
 <?php
 
@@ -17,7 +18,7 @@ class Dependency {
 }
 
 class Service {
-    private $dependency;
+    private Dependency $dependency;
 
     public function __construct(Dependency $dependency) {
         $this->dependency = $dependency;
@@ -34,7 +35,7 @@ class Service {
 <?php
 
 class Container {
-    private $dependencies = [];
+    private array $dependencies = [];
 
     public function addDependency(string $name, Closure $dependency): void {
         $this->dependencies[$name] = $dependency;
