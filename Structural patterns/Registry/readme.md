@@ -13,11 +13,11 @@
 class Registry {
     private static $instances = [];
 
-    public static function set(string $key, $instance): void {
+    final public static function setInstance(string $key, $instance): void {
         self::$instances[$key] = $instance;
     }
 
-    public static function get(string $key) {
+    final public static function getInstance(string $key) {
         if (!isset(self::$instances[$key])) {
             throw new Exception("Instance not found in registry: $key");
         }
@@ -25,7 +25,7 @@ class Registry {
         return self::$instances[$key];
     }
 
-    public static function has(string $key): bool {
+    final public static function hasInstance(string $key): bool {
         return isset(self::$instances[$key]);
     }
 }
@@ -57,12 +57,12 @@ $logger = new Logger();
 $database = new Database();
 
 // Регистрируем объекты в реестре
-Registry::set('logger', $logger);
-Registry::set('database', $database);
+Registry::setInstance('logger', $logger);
+Registry::setInstance('database', $database);
 
 // Получаем объекты из реестра
-$loggerFromRegistry = Registry::get('logger');
-$databaseFromRegistry = Registry::get('database');
+$loggerFromRegistry = Registry::getInstance('logger');
+$databaseFromRegistry = Registry::getInstance('database');
 
 // Используем объекты из реестра
 $loggerFromRegistry->log('Hello, Registry!'); // Output: Logging: Hello, Registry!
