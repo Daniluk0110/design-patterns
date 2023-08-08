@@ -1,6 +1,6 @@
 # Паттерн Adapter (адаптер) на PHP
 
-[image](https://refactoring.guru/images/patterns/content/adapter/adapter-en.png)
+![image](https://refactoring.guru/images/patterns/content/adapter/adapter-en.png)
 
 # Описание
 
