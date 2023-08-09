@@ -1,6 +1,6 @@
 # Паттерн Bridge (Мост) на PHP
 
-Похоже на даптер.
+Похож на даптер.
 
 ![image](https://refactoring.guru/images/patterns/content/bridge/bridge.png)
 

@@ -11,8 +11,10 @@
 ```php
 <?php
 
-class Dependency {
-    public function doSomething(): string {
+class Dependency
+{
+    public function doSomething(): string
+    {
         return "Doing something in Dependency";
     }
 }
@@ -20,11 +22,13 @@ class Dependency {
 class Service {
     private Dependency $dependency;
 
-    public function __construct(Dependency $dependency) {
+    public function __construct(Dependency $dependency)
+    {
         $this->dependency = $dependency;
     }
 
-    public function doSomethingElse(): string {
+    public function doSomethingElse(): string
+    {
         return "Doing something else in Service, and " . $this->dependency->doSomething();
     }
 }
@@ -34,19 +38,23 @@ class Service {
 ```php
 <?php
 
-class Container {
+class Container
+{
     private array $dependencies = [];
 
-    public function addDependency(string $name, Closure $dependency): void {
+    public function addDependency(string $name, Closure $dependency): void
+    {
         $this->dependencies[$name] = $dependency;
     }
 
-    public function getDependency(string $name) {
+    public function getDependency(string $name)
+    {
         if (!isset($this->dependencies[$name])) {
             throw new Exception("Dependency not found: $name");
         }
 
         $dependency = $this->dependencies[$name];
+
         return $dependency();
     }
 }

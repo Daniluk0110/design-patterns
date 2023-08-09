@@ -12,7 +12,8 @@
 ```php
 <?php
 
-interface Target {
+interface Target
+{
     public function request(): string;
 }
 ```
@@ -21,8 +22,10 @@ interface Target {
 ```php
 <?php
 
-class Adaptee {
-    public function specificRequest(): string {
+class Adaptee
+{
+    public function specificRequest(): string
+    {
         return "Adaptee's specific request";
     }
 }
@@ -32,14 +35,17 @@ class Adaptee {
 ```php
 <?php
 
-class Adapter implements Target {
-    private $adaptee;
+class Adapter implements Target
+{
+    private Adaptee $adaptee;
 
-    public function __construct(Adaptee $adaptee) {
+    public function __construct(Adaptee $adaptee)
+    {
         $this->adaptee = $adaptee;
     }
 
-    public function request(): string {
+    public function request(): string
+    {
         return "Adapter: " . $this->adaptee->specificRequest();
     }
 }

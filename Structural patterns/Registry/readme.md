@@ -10,14 +10,17 @@
 ```php
 <?php
 
-class Registry {
+class Registry
+{
     private static $instances = [];
 
-    final public static function setInstance(string $key, $instance): void {
+    final public static function setInstance(string $key, $instance): void
+    {
         self::$instances[$key] = $instance;
     }
 
-    final public static function getInstance(string $key) {
+    final public static function getInstance(string $key)
+    {
         if (!isset(self::$instances[$key])) {
             throw new Exception("Instance not found in registry: $key");
         }
@@ -25,7 +28,8 @@ class Registry {
         return self::$instances[$key];
     }
 
-    final public static function hasInstance(string $key): bool {
+    final public static function hasInstance(string $key): bool
+    {
         return isset(self::$instances[$key]);
     }
 }
@@ -35,14 +39,18 @@ class Registry {
 ```php
 <?php
 
-class Logger {
-    public function log(string $message): void {
+class Logger
+{
+    public function log(string $message): void
+    {
         echo "Logging: $message" . PHP_EOL;
     }
 }
 
-class Database {
-    public function query(string $sql): void {
+class Database
+{
+    public function query(string $sql): void
+    {
         echo "Executing query: $sql" . PHP_EOL;
     }
 }

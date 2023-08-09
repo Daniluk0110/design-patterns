@@ -10,7 +10,8 @@
 ```php
 <?php
 
-interface Component {
+interface Component
+{
     public function operation(): string;
 }
 ```
@@ -19,14 +20,17 @@ interface Component {
 ```php
 <?php
 
-class Leaf implements Component {
-    private $name;
+class Leaf implements Component
+{
+    private string $name;
 
-    public function __construct(string $name) {
+    public function __construct(string $name)
+    {
         $this->name = $name;
     }
 
-    public function operation(): string {
+    public function operation(): string
+    {
         return "Leaf: " . $this->name;
     }
 }
@@ -36,18 +40,23 @@ class Leaf implements Component {
 ```php
 <?php
 
-class Composite implements Component {
-    private $children = [];
+class Composite implements Component
+{
+    private array $children = [];
 
-    public function add(Component $component): void {
+    public function add(Component $component): void
+    {
         $this->children[] = $component;
     }
 
-    public function operation(): string {
+    public function operation(): string
+    {
         $result = "Composite: ";
+
         foreach ($this->children as $child) {
             $result .= $child->operation() . ", ";
         }
+
         return rtrim($result, ', ');
     }
 }
