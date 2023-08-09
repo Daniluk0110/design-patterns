@@ -37,6 +37,10 @@ class CompositeAnalysis extends AnalysisComponent
             $totalRating += $component->calculateRating();
         }
 
+        if ($totalRating > 100) {
+            $totalRating = 100;
+        }
+
         return $totalRating;
     }
 }
@@ -44,11 +48,15 @@ class CompositeAnalysis extends AnalysisComponent
 // Создание отдельных анализов
 $analysis1 = new SingleAnalysis(20);
 $analysis2 = new SingleAnalysis(30);
+$analysis3 = new SingleAnalysis(50);
+$analysis4 = new SingleAnalysis(50);
 
 // Создание составного анализа с поданализами
 $compositeAnalysis = new CompositeAnalysis();
 $compositeAnalysis->addComponent($analysis1);
 $compositeAnalysis->addComponent($analysis2);
+$compositeAnalysis->addComponent($analysis3);
+$compositeAnalysis->addComponent($analysis4);
 
 // Расчет рейтинга для всей структуры
 $totalRating = $compositeAnalysis->calculateRating();
