@@ -12,7 +12,8 @@
 ```php
 <?php
 
-class User {
+class User
+{
     private $id;
     private $username;
     private $email;
