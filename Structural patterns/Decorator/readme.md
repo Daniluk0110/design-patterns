@@ -52,14 +52,18 @@ abstract class Decorator implements Component
 ```php
 <?php
 
-class ConcreteDecoratorA extends Decorator {
-    public function operation(): string {
+class ConcreteDecoratorA extends Decorator
+{
+    public function operation(): string
+    {
         return "ConcreteDecoratorA(" . $this->component->operation() . ")";
     }
 }
 
-class ConcreteDecoratorB extends Decorator {
-    public function operation(): string {
+class ConcreteDecoratorB extends Decorator
+{
+    public function operation(): string
+    {
         return "ConcreteDecoratorB(" . $this->component->operation() . ")";
     }
 }
