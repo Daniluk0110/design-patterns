@@ -5,26 +5,37 @@
 # Описание
 Паттерн **Facade** (**Фасад**) — это структурный паттерн проектирования, который предоставляет унифицированный интерфейс для набора интерфейсов в подсистеме. Фасад обеспечивает более простой и удобный способ взаимодействия клиента с комплексной системой, скрывая детали и сложности внутренних компонентов.
 
+# Аналогия из жизни
+![image](https://refactoring.guru/images/patterns/diagrams/facade/live-example-ru.png)
+
+_Когда вы звоните в магазин и делаете заказ по телефону, сотрудник службы поддержки является вашим фасадом ко всем службам и отделам магазина. Он предоставляет вам упрощённый интерфейс к системе создания заказа, платёжной системе и отделу доставки._
+
 # Пример использования в PHP
 
 * Создайте классы, представляющие сложную подсистему:
+
 ```php
 <?php
 
-class SubsystemA {
-    public function operationA(): string {
+class SubsystemA
+{
+    public function operationA(): string
+    {
         return "Subsystem A operation";
     }
 }
 
 class SubsystemB {
-    public function operationB(): string {
+    public function operationB(): string
+    {
         return "Subsystem B operation";
     }
 }
 
-class SubsystemC {
-    public function operationC(): string {
+class SubsystemC
+{
+    public function operationC(): string
+    {
         return "Subsystem C operation";
     }
 }
@@ -34,22 +45,26 @@ class SubsystemC {
 ```php
 <?php
 
-class Facade {
+class Facade
+{
     private $subsystemA;
     private $subsystemB;
     private $subsystemC;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->subsystemA = new SubsystemA();
         $this->subsystemB = new SubsystemB();
         $this->subsystemC = new SubsystemC();
     }
 
-    public function operation(): string {
+    public function operation(): string
+    {
         $result = "Facade initializes subsystems:\n";
         $result .= $this->subsystemA->operationA() . "\n";
         $result .= $this->subsystemB->operationB() . "\n";
         $result .= $this->subsystemC->operationC() . "\n";
+
         return $result;
     }
 }
