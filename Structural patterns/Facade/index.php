@@ -2,13 +2,8 @@
 
 class WorkerFacade
 {
-    private Developer $developer;
-    private Designer $designer;
-
-    public function __construct(Developer $developer, Designer $designer)
+    public function __construct(private readonly Developer $developer, private readonly Designer $designer)
     {
-        $this->developer = $developer;
-        $this->designer = $designer;
     }
 
     public function startWork(): void
@@ -30,6 +25,7 @@ class Developer
     {
         printf('start developer' . PHP_EOL);
     }
+
     public function stopDevelop(): void
     {
         printf('start developer' . PHP_EOL);
@@ -42,6 +38,7 @@ class Designer
     {
         printf('stop design' . PHP_EOL);
     }
+
     public function stopDesign(): void
     {
         printf('stop design' . PHP_EOL);
