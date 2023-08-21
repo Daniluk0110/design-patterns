@@ -42,7 +42,8 @@ interface Strategy
 
 class AddStrategy implements Strategy
 {
-    public function execute(int $a, int $b): int {
+    public function execute(int $a, int $b): int
+    {
         return $a + $b;
     }
 }
@@ -57,7 +58,8 @@ class SubtractStrategy implements Strategy
 
 class MultiplyStrategy implements Strategy
 {
-    public function execute(int $a, int $b): int {
+    public function execute(int $a, int $b): int
+    {
         return $a * $b;
     }
 }
