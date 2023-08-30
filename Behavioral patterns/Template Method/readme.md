@@ -1,0 +1,109 @@
+# Паттерн Template method (Шаблонный метод) на PHP
+
+# Аналогия из жизни
+![](https://refactoring.guru/images/patterns/diagrams/template-method/live-example.png?id=2485d52852f87da06c9cc0e2fd257d6a)
+
+Проект типового дома могут немного изменить по желанию клиента.  
+
+Строители используют подход, похожий на шаблонный метод при строительстве типовых домов. У них есть основной архитектурный проект, в котором расписаны шаги строительства: заливка фундамента, постройка стен, перекрытие крыши, установка окон и так далее.  
+
+Но, несмотря на стандартизацию каждого этапа, строители могут вносить небольшие изменения на любом из этапов, чтобы сделать дом чуточку непохожим на другие.
+
+**Описание**
+Паттерн **_Template Method**_ (**_Шаблонный метод_**) — это поведенческий паттерн проектирования, который определяет структуру алгоритма, но делегирует реализацию некоторых шагов подклассам. Это позволяет переопределять отдельные шаги алгоритма в подклассах, сохраняя общую структуру.
+
+# Пример использования в PHP
+
+* Определите абстрактный класс AbstractClass, который будет представлять шаблонный метод и некоторые базовые шаги:
+```php
+<?php
+
+abstract class AbstractClass
+{
+    // Шаблонный метод
+    final public function templateMethod(): void
+    {
+        $this->step1();
+        $this->step2();
+        $this->step3();
+    }
+
+    abstract protected function step1(): void;
+    abstract protected function step2(): void;
+    abstract protected function step3(): void;
+}
+```
+
+* Реализуйте конкретные классы, наследующие абстрактный AbstractClass, и переопределите его шаги:
+```php
+<?php
+
+class ConcreteClassA extends AbstractClass
+{
+    protected function step1(): void
+    {
+        echo "ConcreteClassA: Step 1\n";
+    }
+
+    protected function step2(): void
+    {
+        echo "ConcreteClassA: Step 2\n";
+    }
+
+    protected function step3(): void
+    {
+        echo "ConcreteClassA: Step 3\n";
+    }
+}
+
+class ConcreteClassB extends AbstractClass
+{
+    protected function step1(): void
+    {
+        echo "ConcreteClassB: Step 1\n";
+    }
+
+    protected function step2(): void
+    {
+        echo "ConcreteClassB: Step 2\n";
+    }
+
+    protected function step3(): void
+    {
+        echo "ConcreteClassB: Step 3\n";
+    }
+}
+```
+
+* Теперь вы можете использовать паттерн Template Method для создания алгоритмов с общей структурой:
+```php
+<?php
+
+// Пример использования
+$objectA = new ConcreteClassA();
+$objectB = new ConcreteClassB();
+
+$objectA->templateMethod();
+// Output:
+// ConcreteClassA: Step 1
+// ConcreteClassA: Step 2
+// ConcreteClassA: Step 3
+
+$objectB->templateMethod();
+// Output:
+// ConcreteClassB: Step 1
+// ConcreteClassB: Step 2
+// ConcreteClassB: Step 3
+```
+
+## Преимущества
+
+* Позволяет определить общую структуру алгоритма и делегировать реализацию шагов подклассам.
+* Улучшает повторное использование кода.
+
+## Недостатки
+
+* Подклассы могут ограничивать возможность переопределения шагов, так как шаблонный метод уже определен в абстрактном классе.
+* Вы жёстко ограничены скелетом существующего алгоритма.
+* Вы можете нарушить принцип подстановки Барбары Лисков, изменяя базовое поведение одного из шагов алгоритма через подкласс.
+* С ростом количества шагов шаблонный метод становится слишком сложно поддерживать.
