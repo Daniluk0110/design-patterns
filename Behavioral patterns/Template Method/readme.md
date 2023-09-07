@@ -1,5 +1,10 @@
 # Паттерн Template method (Шаблонный метод) на PHP
 
+## Суть паттерна
+Шаблонный метод — это поведенческий паттерн проектирования, который определяет скелет алгоритма, перекладывая ответственность за некоторые его шаги на подклассы. Паттерн позволяет подклассам переопределять шаги алгоритма, не меняя его общей структуры.  
+
+![](https://refactoring.guru/images/patterns/content/template-method/template-method.png)   
+
 # Аналогия из жизни
 ![](https://refactoring.guru/images/patterns/diagrams/template-method/live-example.png?id=2485d52852f87da06c9cc0e2fd257d6a)
 
