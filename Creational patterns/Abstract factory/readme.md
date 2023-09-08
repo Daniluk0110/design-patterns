@@ -2,21 +2,90 @@
 
 Паттерн **Abstract Factory** (**Абстрактная фабрика**) — это порождающий паттерн проектирования, который предоставляет интерфейс для создания семейств взаимосвязанных или взаимозависимых объектов без указания их конкретных классов. Этот паттерн позволяет создавать объекты с определенными характеристиками, сохраняя при этом гибкость и уровень абстракции.
 
+![](https://refactoring.guru/images/patterns/content/abstract-factory/abstract-factory-ru.png)  
+
+## Проблема
+Представьте, что вы пишете симулятор мебельного магазина. Ваш код содержит:
+  
+1. Семейство зависимых продуктов. Скажем, _Кресло_ + _Диван_ + _Столик_.
+2. Несколько вариаций этого семейства. Например, продукты _Кресло_, _Диван_ и _Столик_ представлены в трёх разных стилях: _Ар-деко_, _Викторианском_ и _Модерне_.
+
+Семейства продуктов и их вариации.  
+
+![](https://refactoring.guru/images/patterns/diagrams/abstract-factory/problem-ru.png)
+
+Вам нужен такой способ создавать объекты продуктов, чтобы они сочетались с другими продуктами того же семейства. Это важно, так как клиенты расстраиваются, если получают несочетающуюся мебель.  
+
+![](https://refactoring.guru/images/patterns/content/abstract-factory/abstract-factory-comic-1-ru.png)
+
+Клиенты расстраиваются, если получают несочетающиеся продукты.
+
+
+Кроме того, вы не хотите вносить изменения в существующий код при добавлении новых продуктов или семейcтв в программу. Поставщики часто обновляют свои каталоги, и вы бы не хотели менять уже написанный код каждый раз при получении новых моделей мебели.  
+  
+
+## Решение
+Для начала паттерн Абстрактная фабрика предлагает выделить общие интерфейсы для отдельных продуктов, составляющих семейства. Так, все вариации кресел получат общий интерфейс _Кресло_, все диваны реализуют интерфейс _Диван_ и так далее.
+
+![](https://refactoring.guru/images/patterns/diagrams/abstract-factory/solution1.png)
+
+Все вариации одного и того же объекта должны жить в одной иерархии классов.
+
+Далее вы создаёте **_абстрактную фабрику_** — общий интерфейс, который содержит методы создания всех продуктов семейства (например, **_создатьКресло_**, **_создатьДиван_** и **_создатьСтолик_**). 
+Эти операции должны возвращать абстрактные типы продуктов, представленные интерфейсами, которые мы выделили ранее — _Кресла_, _Диваны_ и _Столики_.
+
+![](https://refactoring.guru/images/patterns/diagrams/abstract-factory/solution2.png)
+
+Конкретные фабрики соответствуют определённой вариации семейства продуктов.  
+
+Как насчёт вариаций продуктов?
+Для каждой вариации семейства продуктов мы должны создать свою собственную фабрику, реализовав абстрактный интерфейс.
+Фабрики создают продукты одной вариации. Например, **_ФабрикаМодерн_** будет возвращать только **_КреслаМодерн_**,**_ДиваныМодерн_** и **_СтоликиМодерн_**.
+
+
+Клиентский код должен работать как с фабриками, так и с продуктами только через их общие интерфейсы.
+Это позволит подавать в ваши классы любой тип фабрики и производить любые продукты, ничего не ломая.
+  
+![](https://refactoring.guru/images/patterns/content/abstract-factory/abstract-factory-comic-2-ru.png)
+
+Для клиентского кода должно быть безразлично, с какой фабрикой работать.  
+
+Например, клиентский код просит фабрику сделать стул. Он не знает, какого типа была эта фабрика. Он не знает, получит викторианский или модерновый стул. Для него важно, чтобы на стуле можно было сидеть и чтобы этот стул отлично смотрелся с диваном той же фабрики.  
+
+
+Осталось прояснить последний момент: кто создаёт объекты конкретных фабрик, если клиентский код работает только с интерфейсами фабрик? Обычно программа создаёт конкретный объект фабрики при запуске, причём тип фабрики выбирается, исходя из параметров окружения или конфигурации.  
+
+
+## Применимость
+**Когда бизнес-логика программы должна работать с разными видами связанных друг с другом продуктов, не завися от конкретных классов продуктов.**
+
+Абстрактная фабрика скрывает от клиентского кода подробности того, как и какие конкретно объекты будут созданы. Но при этом клиентский код может работать со всеми типами создаваемых продуктов, поскольку их общий интерфейс был заранее определён.  
+
+
+**Когда в программе уже используется Фабричный метод, но очередные изменения предполагают введение новых типов продуктов.**
+
+В хорошей программе каждый класс отвечает только за одну вещь. Если класс имеет слишком много фабричных методов, они способны затуманить его основную функцию. Поэтому имеет смысл вынести всю логику создания продуктов в отдельную иерархию классов, применив абстрактную фабрику.  
+  
+
+
 # Пример использования в PHP
 
 Определите интерфейсы для создания абстрактных продуктов и абстрактных фабрик:
 ```php
 <?php
 
-interface AbstractProductA {
+interface AbstractProductA 
+{
     public function usefulFunctionA(): string;
 }
 
-interface AbstractProductB {
+interface AbstractProductB
+{
     public function usefulFunctionB(): string;
 }
 
-interface AbstractFactory {
+interface AbstractFactory
+{
     public function createProductA(): AbstractProductA;
     public function createProductB(): AbstractProductB;
 }
@@ -26,26 +95,34 @@ interface AbstractFactory {
 ```php
 <?php
 
-class ConcreteProductA1 implements AbstractProductA {
-    public function usefulFunctionA(): string {
+class ConcreteProductA1 implements AbstractProductA
+{
+    public function usefulFunctionA(): string
+    {
         return "The result of the product A1.";
     }
 }
 
-class ConcreteProductA2 implements AbstractProductA {
-    public function usefulFunctionA(): string {
+class ConcreteProductA2 implements AbstractProductA
+{
+    public function usefulFunctionA(): string
+    {
         return "The result of the product A2.";
     }
 }
 
-class ConcreteProductB1 implements AbstractProductB {
-    public function usefulFunctionB(): string {
+class ConcreteProductB1 implements AbstractProductB
+{
+    public function usefulFunctionB(): string
+    {
         return "The result of the product B1.";
     }
 }
 
-class ConcreteProductB2 implements AbstractProductB {
-    public function usefulFunctionB(): string {
+class ConcreteProductB2 implements AbstractProductB
+{
+    public function usefulFunctionB(): string
+    {
         return "The result of the product B2.";
     }
 }
@@ -55,22 +132,28 @@ class ConcreteProductB2 implements AbstractProductB {
 ```php
 <?php
 
-class ConcreteFactory1 implements AbstractFactory {
-    public function createProductA(): AbstractProductA {
+class ConcreteFactory1 implements AbstractFactory
+{
+    public function createProductA(): AbstractProductA
+    {
         return new ConcreteProductA1();
     }
 
-    public function createProductB(): AbstractProductB {
+    public function createProductB(): AbstractProductB
+    {
         return new ConcreteProductB1();
     }
 }
 
-class ConcreteFactory2 implements AbstractFactory {
-    public function createProductA(): AbstractProductA {
+class ConcreteFactory2 implements AbstractFactory
+{
+    public function createProductA(): AbstractProductA
+    {
         return new ConcreteProductA2();
     }
 
-    public function createProductB(): AbstractProductB {
+    public function createProductB(): AbstractProductB
+    {
         return new ConcreteProductB2();
     }
 }
@@ -81,7 +164,8 @@ class ConcreteFactory2 implements AbstractFactory {
 <?php
 
 // Пример использования
-function clientCode(AbstractFactory $factory) {
+function clientCode(AbstractFactory $factory)
+{
     $productA = $factory->createProductA();
     $productB = $factory->createProductB();
 
@@ -104,9 +188,14 @@ clientCode($factory2);
 
 ## Преимущества
 
-Позволяет создавать семейства взаимосвязанных объектов без указания их конкретных классов.
-Поддерживает принцип инверсии зависимостей.
+* Позволяет создавать семейства взаимосвязанных объектов без указания их конкретных классов.
+* Поддерживает принцип инверсии зависимостей.
+* Гарантирует сочетаемость создаваемых продуктов.
+* Избавляет клиентский код от привязки к конкретным классам продуктов.
+* Выделяет код производства продуктов в одно место, упрощая поддержку кода.
+* Упрощает добавление новых продуктов в программу.
 
 ## Недостатки
 
-Увеличивает сложность кода, так как требует создания большого числа интерфейсов и классов.
+* Увеличивает сложность кода, так как требует создания большого числа интерфейсов и классов.
+* Требует наличия всех типов продуктов в каждой вариации.
