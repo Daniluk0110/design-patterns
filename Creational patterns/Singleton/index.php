@@ -35,7 +35,7 @@ final class Connection
 
     protected function __clone(): void
     {
-        // TODO: Implement __clone() method.
+        throw new \Exception("Cannot clone a singleton.");
     }
 
     /**
