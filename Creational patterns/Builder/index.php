@@ -2,9 +2,6 @@
 
 class Operator
 {
-    /*
-     *
-    */
     public function make(Builder $builder): Message
     {
         $builder->makeHeader();
@@ -18,15 +15,17 @@ class Operator
 
 interface Builder
 {
-    public function makeHeader();
+    public function make(): void;
 
-    public function makeBody();
+    public function makeHeader(): void;
 
-    public function makeFooter();
+    public function makeBody(): void;
 
-    public function makeCustom();
+    public function makeFooter(): void;
 
-    public function getText();
+    public function makeCustom(): void;
+
+    public function getText(): Message;
 }
 
 class TextBuilder implements Builder
@@ -100,7 +99,7 @@ class Message
 {
     private string $text = '';
 
-    public function setPart($part): void
+    public function setPart(Section $part): void
     {
         $this->text .= $part . PHP_EOL;
     }
