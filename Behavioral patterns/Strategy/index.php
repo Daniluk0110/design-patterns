@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 interface Definer
 {
     public function define(bool|int|string $arg): string;
