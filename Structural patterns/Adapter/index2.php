@@ -2,19 +2,19 @@
 
 interface Lion
 {
-    public function roar();
+    public function roar(): void;
 }
 
 class AfricanLion implements Lion
 {
-    public function roar()
+    public function roar(): void
     {
     }
 }
 
 class AsianLion implements Lion
 {
-    public function roar()
+    public function roar(): void
     {
     }
 }
@@ -30,7 +30,7 @@ class Hunter
 // This needs to be added to the game
 class WildDog
 {
-    public function bark()
+    public function bark(): void
     {
     }
 }
