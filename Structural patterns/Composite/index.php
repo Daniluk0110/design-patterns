@@ -8,7 +8,7 @@ interface Renderable
 class Mail implements Renderable
 {
     private array $parts = [];
-    
+
     public function render(): string
     {
         $result = '';
@@ -20,7 +20,7 @@ class Mail implements Renderable
         return $result;
     }
 
-    public function addPart(Renderable $part)
+    public function addPart(Renderable $part): void
     {
         $this->parts[] = $part;
     }
@@ -30,9 +30,6 @@ abstract class Part
 {
     private string $text;
 
-    /**
-     * @param string $text
-     */
     public function __construct(string $text)
     {
         $this->text = $text;
