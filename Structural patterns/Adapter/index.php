@@ -2,12 +2,12 @@
 
 interface NativeWorker
 {
-    public function countSalary();
+    public function countSalary(): int|float;
 }
 
 interface OutsourceWorker
 {
-    public function countSalaryByHour(float|int $hours);
+    public function countSalaryByHour(int|float $hours): int|float;
 }
 
 class NativeDeveloper implements NativeWorker
@@ -21,8 +21,7 @@ class NativeDeveloper implements NativeWorker
 
 class OutsourceDeveloper implements OutsourceWorker
 {
-
-    public function countSalaryByHour($hours): float|int
+    public function countSalaryByHour(int|float $hours): int|float
     {
         return $hours * 15;
     }
@@ -37,7 +36,7 @@ class OutsourceWorkerAdapter implements NativeWorker
         $this->outsourceWorker = $outsourceWorker;
     }
 
-    public function countSalary()
+    public function countSalary(): int|float
     {
         return $this->outsourceWorker->countSalaryByHour(80);
     }
