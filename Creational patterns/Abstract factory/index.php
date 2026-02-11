@@ -2,9 +2,9 @@
 
 /*
  * Когда у нас есть воркеры, они делятся на девелоперов и дизайнеров.
- * И эи воркеры ещё могут делиться на аутсорс или внутри.
- * Если езё как-то классифицируются нужна абстрактная фабрика.
-*/
+ * И эти воркеры ещё могут делиться на аутсорс или внутри.
+ * Если ещё как-то классифицируются — нужна абстрактная фабрика.
+ */
 
 interface AbstractFactory
 {
@@ -53,7 +53,7 @@ class NativeWorkerFactory implements AbstractFactory
 
 interface Worker
 {
-    public function work();
+    public function work(): void;
 }
 
 interface DeveloperWorker extends Worker
@@ -73,7 +73,7 @@ interface TesterWorker extends Worker
 
 class NativeDeveloperWorker implements DeveloperWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im developing as native \n");
     }
@@ -81,7 +81,7 @@ class NativeDeveloperWorker implements DeveloperWorker
 
 class OutsourceDeveloperWorker implements DeveloperWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im developing as outsource \n");
     }
@@ -89,7 +89,7 @@ class OutsourceDeveloperWorker implements DeveloperWorker
 
 class NativeDesignerWorker implements DesignerWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im designer as native \n");
     }
@@ -97,7 +97,7 @@ class NativeDesignerWorker implements DesignerWorker
 
 class OutsourceDesignerWorker implements DesignerWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im designer as outsource \n");
     }
@@ -105,7 +105,7 @@ class OutsourceDesignerWorker implements DesignerWorker
 
 class NativeTesterWorker implements TesterWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im tester as native \n");
     }
@@ -113,7 +113,7 @@ class NativeTesterWorker implements TesterWorker
 
 class OutsourceTesterWorker implements TesterWorker
 {
-    public function work()
+    public function work(): void
     {
         printf("Im tester as outsource \n");
     }
