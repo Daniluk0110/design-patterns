@@ -1,13 +1,16 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * В компании работают джун, мидл и сеньёр.
  * Если джун или мидл не способен справится с задачей - передаёт дальше.
  */
 abstract class Handler
 {
-    private null|Handler $successor;
+    private ?Handler $successor;
 
-    public function __construct(null|Handler $successor)
+    public function __construct(?Handler $successor)
     {
         $this->successor = $successor;
     }
@@ -28,7 +31,7 @@ abstract class Handler
 
 interface TaskInterface
 {
-    public function getArray();
+    public function getArray(): array;
 }
 
 class DevTask implements TaskInterface
