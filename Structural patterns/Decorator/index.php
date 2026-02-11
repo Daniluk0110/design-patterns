@@ -7,7 +7,7 @@ interface Worker
 
 abstract class WorkerDecorator implements Worker
 {
-    public Worker $worker;
+    protected Worker $worker;
 
     public function __construct(Worker $worker)
     {
@@ -17,7 +17,7 @@ abstract class WorkerDecorator implements Worker
 
 class Developer implements Worker
 {
-    public function CountSalary(): float|int
+    public function countSalary(): float|int
     {
         return 20 * 3000;
     }

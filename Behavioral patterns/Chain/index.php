@@ -5,9 +5,9 @@
  */
 abstract class Handler
 {
-    private null|Handler $successor;
+    private ?Handler $successor;
 
-    public function __construct(null|Handler $successor)
+    public function __construct(?Handler $successor)
     {
         $this->successor = $successor;
     }
@@ -28,7 +28,7 @@ abstract class Handler
 
 interface TaskInterface
 {
-    public function getArray();
+    public function getArray(): array;
 }
 
 class DevTask implements TaskInterface

@@ -25,7 +25,7 @@ class HTMLText implements Formatter
 
 abstract class BridgeService
 {
-    public Formatter $formatter;
+    protected Formatter $formatter;
 
     public function __construct(Formatter $formatter)
     {

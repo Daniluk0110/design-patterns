@@ -2,7 +2,7 @@
 
 abstract class AnalysisComponent
 {
-    abstract public function calculateRating();
+    abstract public function calculateRating(): int;
 }
 
 class SingleAnalysis extends AnalysisComponent

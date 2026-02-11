@@ -30,26 +30,22 @@ final class Connection
     public static function getName(): string
     {
         return self::$name;
-
     }
 
     protected function __clone(): void
     {
-        throw new \Exception("Cannot clone a singleton.");
+        throw new \RuntimeException('Cannot clone a singleton.');
     }
 
-    /**
-     * @throws Exception
-     */
     public function __wakeup(): void
     {
-        throw new \Exception("Cannot unserialize a singleton.");
+        throw new \RuntimeException('Cannot unserialize a singleton.');
     }
 }
 
 $connection = Connection::getInstance();
-$connection::setName('connection1');
+Connection::setName('connection1');
 
 $connection2 = Connection::getInstance();
 
-var_dump($connection2::getName());
+var_dump(Connection::getName());

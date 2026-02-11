@@ -2,7 +2,7 @@
 
 interface Worker
 {
-    public function closedHour($hours);
+    public function closedHour(int $hours): void;
 
     public function countSalary(): int;
 }
@@ -10,7 +10,8 @@ interface Worker
 class WorkerOutsource implements Worker
 {
     private array $hours = [];
-    public function closedHour($hours)
+
+    public function closedHour(int $hours): void
     {
         $this->hours[] = $hours;
     }

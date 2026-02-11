@@ -4,18 +4,18 @@ abstract class Registry
 {
     private static array $services = [];
 
-    final public static function setService($key, Service $service)
+    final public static function setService(int|string $key, Service $service): void
     {
         self::$services[$key] = $service;
     }
 
-    final public static function getService($key): string|Service
+    final public static function getService(int|string $key): Service|string
     {
         if (isset(self::$services[$key])) {
             return self::$services[$key];
         }
 
-        return 'This Service doesnt exists';
+        return "This service doesn't exist";
     }
 }
 

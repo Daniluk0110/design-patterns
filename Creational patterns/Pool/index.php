@@ -7,7 +7,7 @@ class WorkerPool
 
     public function getWorker(): Worker
     {
-        if (count($this->freeWorkers) == 0) {
+        if ($this->freeWorkers === []) {
             $worker = new Worker();
         } else {
             // Будет присвоен переменной и удалён из массива
@@ -19,7 +19,7 @@ class WorkerPool
         return $worker;
     }
 
-    public function release(Worker $worker)
+    public function release(Worker $worker): void
     {
         $key = spl_object_hash($worker);
 
@@ -29,17 +29,11 @@ class WorkerPool
         }
     }
 
-    /**
-     * @return array
-     */
     public function getFreeWorkers(): array
     {
         return $this->freeWorkers;
     }
 
-    /**
-     * @return array
-     */
     public function getBusyWorkers(): array
     {
         return $this->busyWorkers;

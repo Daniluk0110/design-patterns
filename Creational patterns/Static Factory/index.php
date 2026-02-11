@@ -2,12 +2,12 @@
 
 interface Worker
 {
-    public function work();
+    public function work(): void;
 }
 
 class Developer implements Worker
 {
-    public function work()
+    public function work(): void
     {
         printf('Im Developer');
     }
@@ -15,7 +15,7 @@ class Developer implements Worker
 
 class Designer implements Worker
 {
-    public function work()
+    public function work(): void
     {
         printf('Im designer');
     }
@@ -23,13 +23,13 @@ class Designer implements Worker
 
 class WorkerFactory
 {
-    public static function make($workerTitle): ?Worker
+    public static function make(string $workerTitle): ?Worker
     {
-        $Classname = strtoupper($workerTitle);
+        $className = ucfirst(strtolower($workerTitle));
 
         // Можно сделать ещё мапинг массива подходящих классов.
-        if (class_exists($Classname)) {
-            return new $Classname();
+        if (class_exists($className)) {
+            return new $className();
         }
 
         return null;

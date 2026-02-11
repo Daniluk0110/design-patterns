@@ -28,7 +28,7 @@ class Developer
 
     public function stopDevelop(): void
     {
-        printf('start developer' . PHP_EOL);
+        printf('stop developer' . PHP_EOL);
     }
 }
 
@@ -36,7 +36,7 @@ class Designer
 {
     public function startDesign(): void
     {
-        printf('stop design' . PHP_EOL);
+        printf('start design' . PHP_EOL);
     }
 
     public function stopDesign(): void
