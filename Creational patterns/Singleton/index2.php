@@ -17,21 +17,21 @@ final class President
 
     public static function getInstance(): President
     {
-        if (!self::$instance) {
+        if (self::$instance === null) {
             self::$instance = new self();
         }
 
         return self::$instance;
     }
 
-    private function __clone()
+    private function __clone(): void
     {
         // Disable cloning
     }
 
     public function __wakeup(): void
     {
-        throw new \Exception("Cannot unserialize a singleton.");
+        throw new \RuntimeException('Cannot unserialize a singleton.');
     }
 }
 
