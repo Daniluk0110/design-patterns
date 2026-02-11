@@ -31,7 +31,7 @@ class Tester implements Worker
 
 interface WorkerFactory
 {
-    public static function make();
+    public static function make(): Worker;
 }
 
 class DeveloperFactory implements WorkerFactory
@@ -65,4 +65,3 @@ $testerFactory = TesterFactory::make();
 $designerFactory->work();
 $designerFactory->work();
 $testerFactory->work();
-
