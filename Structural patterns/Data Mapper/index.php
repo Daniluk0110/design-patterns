@@ -11,7 +11,7 @@ class Worker
         return $this->name;
     }
 
-    public static function make($args): Worker
+    public static function make(array $args): Worker
     {
         return new self($args['name']);
     }
@@ -26,19 +26,18 @@ class WorkerMapper
         $this->workerStorageAdapter = $workerStorageAdapter;
     }
 
-    public function findById($id): Worker|string
+    public function findById(int $id): Worker|string
     {
         $res = $this->workerStorageAdapter->find($id);
 
         if ($res === null) {
-            return 'Worker with this id doesnt exists';
+            return "Worker with this id doesn't exist";
         }
-
 
         return $this->make($res);
     }
 
-    private function make($args): Worker
+    private function make(array $args): Worker
     {
         return Worker::make($args);
     }
@@ -53,7 +52,7 @@ class WorkerStorageAdapter
         $this->data = $data;
     }
 
-    public function find($id)
+    public function find(int $id): ?array
     {
         if (isset($this->data[$id])) {
             return $this->data[$id];
