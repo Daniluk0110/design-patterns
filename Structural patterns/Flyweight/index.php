@@ -38,7 +38,7 @@ class MailFactory
 {
     private array $pool = [];
 
-    public function getMail($id, $typeMail): Mail
+    public function getMail(int $id, string $typeMail): Mail
     {
         if (!isset($this->pool[$id])) {
             $this->pool[$id] = $this->make($typeMail);
@@ -47,7 +47,7 @@ class MailFactory
         return $this->pool[$id];
     }
 
-    private function make($typeMail): Mail
+    private function make(string $typeMail): Mail
     {
         if ($typeMail === 'business') {
             return new BusinessMail('Business text');
