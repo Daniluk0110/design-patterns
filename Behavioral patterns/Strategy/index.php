@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 interface Definer
 {
-    public function define($arg);
+    public function define(bool|int|string $arg): string;
 }
 
 class Data
 {
+    private bool|int|string $arg;
     private Definer $definer;
 
     public function setArg(bool|int|string $arg): void
     {
         $this->arg = $arg;
     }
-    private int|string|bool $arg;
 
     public function __construct(Definer $definer)
     {
@@ -28,8 +30,7 @@ class Data
 
 class IntDefiner implements Definer
 {
-
-    public function define($arg): string
+    public function define(bool|int|string $arg): string
     {
         return $arg . ' from int strategy';
     }
@@ -37,8 +38,7 @@ class IntDefiner implements Definer
 
 class StringDefiner implements Definer
 {
-
-    public function define($arg): string
+    public function define(bool|int|string $arg): string
     {
         return $arg . ' from string strategy';
     }
@@ -46,8 +46,7 @@ class StringDefiner implements Definer
 
 class BoolDefiner implements Definer
 {
-
-    public function define($arg): string
+    public function define(bool|int|string $arg): string
     {
         return $arg . ' from bool strategy';
     }
