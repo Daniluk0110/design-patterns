@@ -2,12 +2,12 @@
 
 interface Command
 {
-    public function execute();
+    public function execute(): void;
 }
 
 interface Undoable extends Command
 {
-    public function undo();
+    public function undo(): void;
 }
 
 class Output
@@ -30,10 +30,10 @@ class Output
         return $this->body;
     }
 
-    public function write(string $str): void
+    public function write(string $text): void
     {
         if ($this->isEnable) {
-            $this->body = $str;
+            $this->body = $text;
         }
     }
 }
@@ -90,11 +90,11 @@ class ChangerStatus implements Undoable
 
 $output = new Output();
 $invoker = new Invoker();
-$message = new Message($output);
-
 $statusChanger = new ChangerStatus($output);
 $statusChanger->undo();
 //$statusChanger->execute();
+
+$message = new Message($output);
 $message->execute();
 
 var_dump($output->getBody());
