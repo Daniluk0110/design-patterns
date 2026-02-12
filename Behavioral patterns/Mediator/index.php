@@ -2,7 +2,7 @@
 
 interface Mediator
 {
-    public function getWorker();
+    public function getWorker(): void;
 }
 
 abstract class Worker
@@ -30,7 +30,6 @@ class InfoBase
     public function printInfo(Worker $worker): void
     {
         printf($worker->work() . PHP_EOL);
-
     }
 }
 

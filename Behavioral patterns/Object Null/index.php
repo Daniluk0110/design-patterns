@@ -2,7 +2,7 @@
 
 interface Worker
 {
-    public function work();
+    public function work(): void;
 }
 
 class ObjectManager
@@ -32,7 +32,6 @@ class NullWorker implements Worker
 {
     public function work(): void
     {
-        // TODO: Implement work() method.
     }
 }
 

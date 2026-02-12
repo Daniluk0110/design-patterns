@@ -75,11 +75,6 @@ class Task
     }
 }
 
-class Worker
-{
-
-}
-
 $task = new Task();
 $task->create();
 
