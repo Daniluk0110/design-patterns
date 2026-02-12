@@ -46,14 +46,11 @@ class NullAccount implements Account
 }
 
 // Функция для получения аккаунта
-function getAccountFromDatabase()
+function getAccountFromDatabase(): Account
 {
-    // Предположим, что мы получаем аккаунт или null
-    return null;
+    // Предположим, что мы получаем аккаунт или используем NullAccount
+    return new NullAccount();
 }
-
-// Создание аккаунта (выберите BankAccount или NullAccount)
-$account = new NullAccount(); // Используйте NullAccount или BankAccount
 
 // Получение аккаунта
 $account = getAccountFromDatabase();
