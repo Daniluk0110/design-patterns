@@ -2,7 +2,7 @@
 
 interface State
 {
-    public function toNext(Task $task);
+    public function toNext(Task $task): void;
 
     public function getState(): string;
 }
@@ -63,7 +63,7 @@ class Process implements State
 
 class Test implements State
 {
-    public function toNext(Task $task)
+    public function toNext(Task $task): void
     {
         $task->setState(new Done());
     }
@@ -76,7 +76,7 @@ class Test implements State
 
 class Done implements State
 {
-    public function toNext(Task $task)
+    public function toNext(Task $task): void
     {
         // Empty
     }
