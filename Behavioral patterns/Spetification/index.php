@@ -29,9 +29,6 @@ class PupilSpecification implements Specification
 {
     private int $needRate = 0;
 
-    /**
-     * @param int $needRate
-     */
     public function __construct(int $needRate)
     {
         $this->needRate = $needRate;
