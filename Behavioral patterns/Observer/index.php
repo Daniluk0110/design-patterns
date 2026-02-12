@@ -27,7 +27,7 @@ class Worker implements SplSubject
         }
     }
 
-    public function changeName(string $name)
+    public function changeName(string $name): void
     {
         $this->name = $name;
         $this->notify();
