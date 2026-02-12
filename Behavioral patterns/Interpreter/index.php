@@ -14,13 +14,9 @@ class Context
         $this->worker[] = $worker;
     }
 
-    public function lookUp($key): bool
+    public function lookUp(int $key): bool
     {
-        if (isset($this->worker[$key])) {
-            return $this->worker[$key];
-        }
-
-        return false;
+        return isset($this->worker[$key]);
     }
 }
 
