@@ -25,18 +25,14 @@ class WorkerList
         $this->list = $list;
     }
 
-    public function getItem($key): ?Worker
+    public function getItem(int $key): ?Worker
     {
-        if ($this->list[$key]) {
-            return $key;
-        }
-
-        return null;
+        return $this->list[$key] ?? null;
     }
 
     public function next(): void
     {
-        if ($this->index < (count($this->list) -1)) {
+        if ($this->index < (count($this->list) - 1)) {
             $this->index++;
         }
     }
