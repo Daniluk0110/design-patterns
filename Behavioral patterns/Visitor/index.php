@@ -1,9 +1,9 @@
 <?php
 
-interface  WorkerVisitor
+interface WorkerVisitor
 {
-    public function visitDeveloper(Worker $developer);
-    public function visitDesigner(Worker $designer);
+    public function visitDeveloper(Worker $developer): void;
+    public function visitDesigner(Worker $designer): void;
 }
 
 class RecorderVisitor implements WorkerVisitor
@@ -15,12 +15,12 @@ class RecorderVisitor implements WorkerVisitor
         return $this->visited;
     }
 
-    public function visitDeveloper(Worker $developer)
+    public function visitDeveloper(Worker $developer): void
     {
         $this->visited[] = $developer;
     }
 
-    public function visitDesigner(Worker $designer)
+    public function visitDesigner(Worker $designer): void
     {
         $this->visited[] = $designer;
     }
@@ -28,8 +28,8 @@ class RecorderVisitor implements WorkerVisitor
 
 interface Worker
 {
-    public function work();
-    public function accept(WorkerVisitor $visitor);
+    public function work(): void;
+    public function accept(WorkerVisitor $visitor): void;
 }
 
 class Developer implements Worker
