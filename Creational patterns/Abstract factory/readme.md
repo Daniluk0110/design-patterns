@@ -7,6 +7,9 @@ _Абстрактная фабрика_
 
 ![](https://refactoring.guru/images/patterns/content/abstract-factory/abstract-factory-ru.png)  
 
+## ⚡ В двух словах
+Абстрактная фабрика — это «фабрика фабрик»: она создаёт **семейства связанных объектов** и гарантирует, что они совместимы друг с другом.
+
 ## 🧩 Проблема
 Представьте, что вы пишете симулятор мебельного магазина. Ваш код содержит:
   
@@ -64,6 +67,61 @@ _Абстрактная фабрика_
 - **Используется Фабричный метод, а требования требуют новых типов продуктов.** Создание выделяется в отдельную иерархию фабрик.
   
 
+
+## 🧩 Пример из Design Patterns for Humans
+_Задача: создать двери и подходящих специалистов для их установки._
+
+```php
+<?php
+
+interface Door
+{
+    public function getDescription(): string;
+}
+
+class WoodenDoor implements Door
+{
+    public function getDescription(): string
+    {
+        return 'Wooden door';
+    }
+}
+
+class IronDoor implements Door
+{
+    public function getDescription(): string
+    {
+        return 'Iron door';
+    }
+}
+
+interface DoorFittingExpert
+{
+    public function getDescription(): string;
+}
+
+class Carpenter implements DoorFittingExpert
+{
+    public function getDescription(): string
+    {
+        return 'Fits wooden doors';
+    }
+}
+
+class Welder implements DoorFittingExpert
+{
+    public function getDescription(): string
+    {
+        return 'Fits iron doors';
+    }
+}
+
+interface DoorFactory
+{
+    public function makeDoor(): Door;
+    public function makeFittingExpert(): DoorFittingExpert;
+}
+```
 
 ## 🧪 Пример использования в PHP
 
